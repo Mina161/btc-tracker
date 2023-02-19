@@ -28,7 +28,7 @@
   },
   "scripts": {
     "cors-server": "cd node_modules/cors-anywhere && npm start",
-    "start": "concurrently \"react-scripts start\" \"npm run cors-server\" ",
+    "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
