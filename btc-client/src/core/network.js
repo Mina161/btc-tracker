@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const baseURL = "https://cors-anywhere.herokuapp.com/https://shop.btcegyptgold.com";
+const baseURL = process.env.REACT_APP_BASE;
 
 const postRequest = async (body, query, params, token, endPoint) => {
   return await axios.post(
@@ -10,7 +10,8 @@ const postRequest = async (body, query, params, token, endPoint) => {
       params: query,
       headers: {
         "Accept": "json",
-        "x-access-token": token
+        "origin":"",
+        "x-requested-with":""
       }
     },
   );
@@ -21,7 +22,8 @@ const getRequest = async (query, params, token, endPoint) => {
     params: query,
     headers: {
       "Accept": "json",
-      "x-access-token": token
+      "origin":"",
+      "x-requested-with":""
     },
     responseType : query?.responseType
   });
@@ -32,7 +34,8 @@ const delRequest = async (query, params, token, endPoint) => {
     params: query,
     headers: {
       "Accept": "json",
-      "x-access-token": token
+      "origin":"",
+      "x-requested-with":""
     },
   });
 };
@@ -45,7 +48,8 @@ const putRequest = async (body, query, params, token, endPoint) => {
       params: query,
       headers: {
         "Accept": "json",
-        "x-access-token": token
+        "origin":"",
+        "x-requested-with":""
       },
     }
   );
