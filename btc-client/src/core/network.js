@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const baseURL = "";
+const baseURL = "https://cors-anywhere.herokuapp.com/https://shop.btcegyptgold.com";
 
 const postRequest = async (body, query, params, token, endPoint) => {
   return await axios.post(
