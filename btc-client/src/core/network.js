@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const baseURL = "https://shop.btcegyptgold.com";
+const baseURL = "";
 
 const postRequest = async (body, query, params, token, endPoint) => {
   return await axios.post(

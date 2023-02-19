@@ -1,6 +1,8 @@
 import * as React from 'react';
-import { Typography, Paper, IconButton, InputBase, Box, Container, Pagination, CircularProgress, Accordion, AccordionSummary, AccordionDetails, Button, Slider, Select, MenuItem, Card, FormHelperText, Grid, InputLabel, FormControl, Chip, TextField } from '@mui/material';
+import { Typography, Paper, IconButton, InputBase, Box, Container, Pagination, CircularProgress, Accordion, AccordionSummary, AccordionDetails, Button, Slider, Select, MenuItem, Card, FormHelperText, Grid, InputLabel, FormControl, Chip, TextField, TableContainer, Table, TableHead, TableRow, TableCell, TableBody } from '@mui/material';
 import { connect } from "react-redux";
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import CalculateIcon from '@mui/icons-material/Calculate';
 import { getPrices, addCoin, getCoins, saveCoins, clearCoins, removeCoin } from '../app/store/actions/actions';
 import moment from "moment"
 import { v1 } from "uuid"
@@ -10,7 +12,6 @@ export const Index = ({ prices, getPrices, coins, addCoin, getCoins, saveCoins, 
     React.useEffect(() => {
         getCoins();
         getPrices();
-        if(prices && !prices.isLoading) updateVals();
     }, [])
 
     const getCurrValue = () => {
@@ -59,14 +60,13 @@ export const Index = ({ prices, getPrices, coins, addCoin, getCoins, saveCoins, 
 
     return (
         <Container component="main" maxWidth="xl">
-            <Box sx={{ display: "flex", justifyContent: "center", alignItems: 'center' }}>
-            </Box>
             <Grid container direction="row" display="flex" justifyContent="space-evenly" alignItems="center">
-                <Grid item xs={6} display="flex-row" alignItems="center">
+                <Grid item xs={8} display="flex-row" alignItems="center">
                     <Accordion>
                         <AccordionSummary
                             aria-controls="panel1a-content"
                             id="panel1a-header"
+                            expandIcon={<ExpandMoreIcon />}
                         >
                             <Typography>My Coins</Typography>
                         </AccordionSummary>
@@ -108,15 +108,54 @@ export const Index = ({ prices, getPrices, coins, addCoin, getCoins, saveCoins, 
             </Grid>
             <hr />
             <Box>
-                <Card sx={{ margin: 2 }}>
+                <Card sx={{ margin: 2, display: "flex-col", justifyContent: "center", alignItems: "center" }}>
                     <Typography fontWeight="bold" fontSize={42}>BTC Prices as of {moment().format("DD/MM/yyyy hh:mm")}</Typography>
-                    <Typography fontSize={22}>One Pound: {prices?.data?.pound}</Typography>
-                    <Typography fontSize={22}>Half Pound: {prices?.data?.half}</Typography>
-                    <Typography fontSize={22}>Quarter Pound: {prices?.data?.quarter}</Typography>
+                    <Box display= "flex" justifyContent="center" alignItems="center" my={2}>
+                        <TableContainer sx={{width: "80%"}} component={Paper}>
+                            <Table aria-label="simple table">
+                                <TableHead>
+                                    <TableRow>
+                                        <TableCell align="center" sx={{fontWeight: "bold"}}>Item</TableCell>
+                                        <TableCell align="center" sx={{fontWeight: "bold"}}>Price</TableCell>
+                                    </TableRow>
+                                </TableHead>
+                                <TableBody>
+                                    <TableRow
+                                        key="One Pound"
+                                        sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                                    >
+                                        <TableCell component="th" align="center" scope="row">
+                                            One Pound (8g)
+                                        </TableCell>
+                                        <TableCell align="center">{prices?.data?.pound} EGP</TableCell>
+                                    </TableRow>
+                                    <TableRow
+                                        key="Half Pound"
+                                        sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                                    >
+                                        <TableCell component="th" align="center" scope="row">
+                                            Half Pound (4g)
+                                        </TableCell>
+                                        <TableCell align="center">{prices?.data?.half} EGP</TableCell>
+                                    </TableRow>
+                                    <TableRow
+                                        key="One Pound"
+                                        sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                                    >
+                                        <TableCell component="th" align="center" scope="row">
+                                            Quarter Pound (2g)
+                                        </TableCell>
+                                        <TableCell align="center">{prices?.data?.quarter} EGP</TableCell>
+                                    </TableRow>
+                                </TableBody>
+                            </Table>
+                        </TableContainer>
+                    </Box>
                 </Card>
                 <Card sx={{ margin: 2 }}>
                     <Typography fontSize={30}>Purchase Value: {value} EGP</Typography>
-                    <Typography color={currValue > value ? "green" : "red"} fontSize={30}>Total Earnings: {currValue - value} EGP</Typography>
+                    <Typography color={currValue >= value ? "green" : "red"} fontSize={30}>Total Earnings: {currValue - value} EGP</Typography>
+                    <Button variant="contained" sx={{ my: 2 }} onClick={updateVals}><CalculateIcon /> Calculate</Button>
                 </Card>
             </Box>
         </Container>
