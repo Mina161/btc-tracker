@@ -10,6 +10,7 @@ export const Index = ({ prices, getPrices, coins, addCoin, getCoins, saveCoins, 
     React.useEffect(() => {
         getCoins();
         getPrices();
+        if(prices && !prices.isLoading) updateVals();
     }, [])
 
     const getCurrValue = () => {
@@ -32,12 +33,20 @@ export const Index = ({ prices, getPrices, coins, addCoin, getCoins, saveCoins, 
 
     const { value, currValue } = statistics
 
+    const updateVals = () => {
+        setStatistics({
+            value: coins?.data?.reduce((accumulator, coin) => accumulator + parseInt(coin.value), 0),
+            currValue: getCurrValue()
+        })
+    }
+
     const handleAddCoin = (e) => {
         e.preventDefault()
         const data = new FormData(e.currentTarget)
         const id = v1()
         const newCoin = { type: data.get("coin"), value: data.get("coin-value"), id: id }
         addCoin(newCoin)
+        updateVals()
     }
 
     if (prices?.isLoading) {
@@ -46,13 +55,6 @@ export const Index = ({ prices, getPrices, coins, addCoin, getCoins, saveCoins, 
                 <CircularProgress />
             </Box>
         )
-    }
-
-    if (!prices?.isLoading) {
-        setStatistics({
-            value: coins?.data?.reduce((accumulator, coin) => accumulator + parseInt(coin.value), 0),
-            currValue: getCurrValue()
-        })
     }
 
     return (
