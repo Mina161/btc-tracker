@@ -22,7 +22,7 @@ export const Index = ({ prices, getPrices, coins, addCoin, getCoins, saveCoins, 
             }
         })
         const currValue = allValues.reduce((accumulator, value) => accumulator + value, 0)
-        return currValue 
+        return currValue
     }
 
     const [statistics, setStatistics] = React.useState({
@@ -30,7 +30,7 @@ export const Index = ({ prices, getPrices, coins, addCoin, getCoins, saveCoins, 
         currValue: getCurrValue()
     })
 
-    const {value, currValue} = statistics
+    const { value, currValue } = statistics
 
     const handleAddCoin = (e) => {
         e.preventDefault()
@@ -46,6 +46,13 @@ export const Index = ({ prices, getPrices, coins, addCoin, getCoins, saveCoins, 
                 <CircularProgress />
             </Box>
         )
+    }
+
+    if (!prices?.isLoading) {
+        setStatistics({
+            value: coins?.data?.reduce((accumulator, coin) => accumulator + parseInt(coin.value), 0),
+            currValue: getCurrValue()
+        })
     }
 
     return (
@@ -99,15 +106,15 @@ export const Index = ({ prices, getPrices, coins, addCoin, getCoins, saveCoins, 
             </Grid>
             <hr />
             <Box>
-                <Card sx={{margin: 2}}>
+                <Card sx={{ margin: 2 }}>
                     <Typography fontWeight="bold" fontSize={42}>BTC Prices as of {moment().format("DD/MM/yyyy hh:mm")}</Typography>
                     <Typography fontSize={22}>One Pound: {prices?.data?.pound}</Typography>
                     <Typography fontSize={22}>Half Pound: {prices?.data?.half}</Typography>
                     <Typography fontSize={22}>Quarter Pound: {prices?.data?.quarter}</Typography>
                 </Card>
-                <Card sx={{margin: 2}}>
+                <Card sx={{ margin: 2 }}>
                     <Typography fontSize={30}>Purchase Value: {value} EGP</Typography>
-                    <Typography color={currValue > value ? "green":"red"} fontSize={30}>Total Earnings: {currValue - value} EGP</Typography>
+                    <Typography color={currValue > value ? "green" : "red"} fontSize={30}>Total Earnings: {currValue - value} EGP</Typography>
                 </Card>
             </Box>
         </Container>
