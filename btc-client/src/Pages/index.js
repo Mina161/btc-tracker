@@ -154,7 +154,7 @@ export const Index = ({ prices, getPrices, coins, addCoin, getCoins, saveCoins, 
                 </Card>
                 <Card sx={{ margin: 2 }}>
                     <Typography fontSize={30}>Purchase Value: {value} EGP</Typography>
-                    <Typography color={currValue >= value ? "green" : "red"} fontSize={30}>Total Earnings: {currValue - value} EGP ({(currValue - value) / value}%)</Typography>
+                    <Typography color={currValue >= value ? "green" : "red"} fontSize={30}>Total Earnings: {currValue - value} EGP ({value > 0 && ((currValue - value) / value).toFixed(4)}%)</Typography>
                     <Button variant="contained" sx={{ my: 2 }} onClick={updateVals}><CalculateIcon /> Calculate</Button>
                 </Card>
             </Box>
