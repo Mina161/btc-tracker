@@ -1,7 +1,7 @@
 {
    "pounds": {
-      "quarter": "21k-fifth-king-george-gold-quarter-pound-2g.html",
-      "half": "21k-king-edward-yellow-gold-half-pound-4-g.html",
-      "full": "21k-king-edward-yellow-gold-pound-8-g.html"
+      "quarter": "shop/gold/coins.html?gm=2gm",
+      "half": "shop/gold/coins.html?gm=4gm",
+      "full": "shop/gold/coins.html?gm=8gm"
    }
 }

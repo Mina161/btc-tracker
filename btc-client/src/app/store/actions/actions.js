@@ -17,17 +17,17 @@ export const getPrices = () => (dispatch) => {
         .then((response) => {
             const { data } = response;
             const doc = parse(data)
-            prices.pound = parseInt(doc.querySelector(".price").text)
+            prices.pound = parseInt(doc.querySelector(".price").text.split(" ")[0].replace(",",""))
             getRequest(undefined, undefined, undefined, endpoints.pounds.half)
                 .then((response) => {
                     const { data } = response;
                     const doc = parse(data)
-                    prices.half = parseInt(doc.querySelector(".price").text)
+                    prices.half = parseInt(doc.querySelector(".price").text.split(" ")[0].replace(",",""))
                     getRequest(undefined, undefined, undefined, endpoints.pounds.quarter)
                         .then((response) => {
                             const { data } = response;
                             const doc = parse(data)
-                            prices.quarter = parseInt(doc.querySelector(".price").text)
+                            prices.quarter = parseInt(doc.querySelector(".price").text.split(" ")[0].replace(",",""))
                             return dispatch({
                                 type: PRICES_SUCCESS,
                                 payload: prices,
