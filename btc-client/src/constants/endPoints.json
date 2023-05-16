@@ -1,7 +1,7 @@
 {
    "pounds": {
-      "quarter": "shop/gold/coins.html?gm=2gm",
-      "half": "shop/gold/coins.html?gm=4gm",
-      "full": "shop/gold/coins.html?gm=8gm"
+      "quarter": "shop/gold.html?cat=5&gm=2gm",
+      "half": "shop/gold.html?cat=5&gm=4gm",
+      "full": "shop/gold.html?cat=5&gm=8gm"
    }
 }
