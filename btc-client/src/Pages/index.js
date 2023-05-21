@@ -14,6 +14,13 @@ export const Index = ({ prices, getPrices, coins, addCoin, getCoins, saveCoins, 
         getPrices();
     }, [])
 
+    React.useEffect(() => {
+        setStatistics({
+            value: coins?.data?.reduce((accumulator, coin) => accumulator + parseInt(coin.value), 0),
+            currValue: getCurrValue()
+        })
+    }, [prices, coins])
+
     const getCurrValue = () => {
         var allValues = coins?.data?.map((coin) => {
             switch (coin.type) {
