@@ -76,17 +76,17 @@ export const Index = ({ prices, getPrices, coins, addCoin, getCoins, saveCoins, 
                             id="panel1a-header"
                             expandIcon={<ExpandMoreIcon />}
                         >
-                            <Typography>My Coins</Typography>
+                            <Typography>My Investments</Typography>
                         </AccordionSummary>
                         <AccordionDetails>
                             <Box component="form" onSubmit={handleAddCoin}>
                                 <FormControl fullWidth margin='normal'>
-                                    <InputLabel id="demo-simple-select-label">Pound Options</InputLabel>
+                                    <InputLabel id="demo-simple-select-label">Investment Options</InputLabel>
                                     <Select
                                         labelId="demo-simple-select-label"
                                         id="coin"
                                         name="coin"
-                                        label="Pound Options"
+                                        label="Investment Options"
                                     >
                                         <MenuItem value={"Ingot"}>24k Ingot (10g)</MenuItem>
                                         <MenuItem value={"Pound"}>One Pound</MenuItem>
@@ -97,7 +97,7 @@ export const Index = ({ prices, getPrices, coins, addCoin, getCoins, saveCoins, 
                                 <TextField
                                     id="coin-value"
                                     name="coin-value"
-                                    label="Coin Purchase Price"
+                                    label="Purchase Price"
                                     variant="outlined"
                                     fullWidth
                                     type="number"
@@ -107,9 +107,9 @@ export const Index = ({ prices, getPrices, coins, addCoin, getCoins, saveCoins, 
                                 <Grid container sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
                                     {coins?.data?.map((coin) => <Grid item m={1}><Chip label={`${coin.type} @ ${coin.value} EGP`} onDelete={() => removeCoin(coin.id)} /></Grid>)}
                                 </Grid>
-                                <Button variant="contained" type='submit' sx={{ margin: 1 }} >Add Coin</Button>
-                                <Button variant="contained" onClick={clearCoins} sx={{ margin: 1, bgcolor: "maroon" }} >Clear Coins</Button>
-                                <Button variant="contained" onClick={saveCoins} sx={{ margin: 1, bgcolor: "goldenrod" }} >Save Coins</Button>
+                                <Button variant="contained" type='submit' sx={{ margin: 1 }} >Add Investment</Button>
+                                <Button variant="contained" onClick={clearCoins} sx={{ margin: 1, bgcolor: "maroon" }} >Clear Investments</Button>
+                                <Button variant="contained" onClick={saveCoins} sx={{ margin: 1, bgcolor: "goldenrod" }} >Save Investments</Button>
                             </Box>
                         </AccordionDetails>
                     </Accordion>
@@ -118,7 +118,7 @@ export const Index = ({ prices, getPrices, coins, addCoin, getCoins, saveCoins, 
             <hr />
             <Box>
                 <Card sx={{ margin: 2, display: "flex-col", justifyContent: "center", alignItems: "center" }}>
-                    <Typography fontWeight="bold" fontSize={42}>BTC Prices as of {moment().format("DD/MM/yyyy hh:mm")}</Typography>
+                    <Typography fontWeight="bold" fontSize={42}>BTC Prices as of {moment().format("lll")}</Typography>
                     <Box display= "flex" justifyContent="center" alignItems="center" my={2}>
                         <TableContainer sx={{width: "80%"}} component={Paper}>
                             <Table aria-label="simple table">
