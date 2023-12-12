@@ -27,6 +27,7 @@ export const Index = ({ prices, getPrices, coins, addCoin, getCoins, saveCoins, 
                 case "Pound": return prices?.data?.pound;
                 case "Half": return prices?.data?.half;
                 case "Quarter": return prices?.data?.quarter;
+                case "Ingot": return prices?.data?.ingot;
                 default: return 0;
             }
         })
@@ -87,6 +88,7 @@ export const Index = ({ prices, getPrices, coins, addCoin, getCoins, saveCoins, 
                                         name="coin"
                                         label="Pound Options"
                                     >
+                                        <MenuItem value={"Ingot"}>24k Ingot (10g)</MenuItem>
                                         <MenuItem value={"Pound"}>One Pound</MenuItem>
                                         <MenuItem value={"Half"}>Half Pound</MenuItem>
                                         <MenuItem value={"Quarter"}>Quarter Pound</MenuItem>
@@ -127,6 +129,15 @@ export const Index = ({ prices, getPrices, coins, addCoin, getCoins, saveCoins, 
                                     </TableRow>
                                 </TableHead>
                                 <TableBody>
+                                <TableRow
+                                        key="Ingot"
+                                        sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                                    >
+                                        <TableCell component="th" align="center" scope="row">
+                                            Ingot (10g)
+                                        </TableCell>
+                                        <TableCell align="center">{prices?.data?.ingot} EGP</TableCell>
+                                    </TableRow>
                                     <TableRow
                                         key="One Pound"
                                         sx={{ '&:last-child td, &:last-child th': { border: 0 } }}

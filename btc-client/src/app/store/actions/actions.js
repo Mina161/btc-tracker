@@ -17,21 +17,34 @@ export const getPrices = () => (dispatch) => {
         .then((response) => {
             const { data } = response;
             const doc = parse(data)
-            prices.pound = parseInt(doc.querySelector(".price").text.split(" ")[0].replace(",",""))
+            prices.pound = parseInt(doc.querySelector(".price").text.split(" ")[0].replace(",", ""))
             getRequest(undefined, undefined, undefined, endpoints.pounds.half)
                 .then((response) => {
                     const { data } = response;
                     const doc = parse(data)
-                    prices.half = parseInt(doc.querySelector(".price").text.split(" ")[0].replace(",",""))
+                    prices.half = parseInt(doc.querySelector(".price").text.split(" ")[0].replace(",", ""))
                     getRequest(undefined, undefined, undefined, endpoints.pounds.quarter)
                         .then((response) => {
                             const { data } = response;
                             const doc = parse(data)
-                            prices.quarter = parseInt(doc.querySelector(".price").text.split(" ")[0].replace(",",""))
-                            return dispatch({
-                                type: PRICES_SUCCESS,
-                                payload: prices,
-                            });
+                            prices.quarter = parseInt(doc.querySelector(".price").text.split(" ")[0].replace(",", ""))
+                            getRequest(undefined, undefined, undefined, endpoints.pounds.ingot)
+                                .then((response) => {
+                                    const { data } = response;
+                                    const doc = parse(data)
+                                    prices.ingot = parseInt(doc.querySelector(".price").text.split(" ")[0].replace(",", ""))
+                                    return dispatch({
+                                        type: PRICES_SUCCESS,
+                                        payload: prices,
+                                    });
+                                })
+                                .catch((err) => {
+                                    notification.error({ message: err?.message })
+                                    console.log(err);
+                                    return dispatch({
+                                        type: PRICES_FAIL,
+                                    });
+                                });
                         })
                         .catch((err) => {
                             notification.error({ message: err?.message })
@@ -83,7 +96,7 @@ export const saveCoins = () => (dispatch, useState) => {
     try {
         const currCoins = useState()?.coins?.data
         localStorage.setItem("btcCoinsOwned", JSON.stringify(currCoins))
-        notification.success({message: "Coins Saved"})
+        notification.success({ message: "Coins Saved" })
         return dispatch({
             type: COINS_SUCCESS,
             payload: currCoins
