@@ -27,7 +27,8 @@ export const Index = ({ prices, getPrices, coins, addCoin, getCoins, saveCoins, 
                 case "Pound": return prices?.data?.pound;
                 case "Half": return prices?.data?.half;
                 case "Quarter": return prices?.data?.quarter;
-                case "Ingot": return prices?.data?.ingot;
+                case "10Ingot": return prices?.data?._10ingot;
+                case "5Ingot": return prices?.data?._5ingot;
                 default: return 0;
             }
         })
@@ -88,7 +89,8 @@ export const Index = ({ prices, getPrices, coins, addCoin, getCoins, saveCoins, 
                                         name="coin"
                                         label="Investment Options"
                                     >
-                                        <MenuItem value={"Ingot"}>24k Ingot (10g)</MenuItem>
+                                        <MenuItem value={"10Ingot"}>24k Ingot (10g)</MenuItem>
+                                        <MenuItem value={"5Ingot"}>24k Ingot (5g)</MenuItem>
                                         <MenuItem value={"Pound"}>One Pound</MenuItem>
                                         <MenuItem value={"Half"}>Half Pound</MenuItem>
                                         <MenuItem value={"Quarter"}>Quarter Pound</MenuItem>
@@ -134,9 +136,18 @@ export const Index = ({ prices, getPrices, coins, addCoin, getCoins, saveCoins, 
                                         sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                                     >
                                         <TableCell component="th" align="center" scope="row">
-                                            Ingot (10g)
+                                            24K Ingot (10g)
                                         </TableCell>
-                                        <TableCell align="center">{prices?.data?.ingot} EGP</TableCell>
+                                        <TableCell align="center">{prices?.data?._10ingot} EGP</TableCell>
+                                    </TableRow>
+                                    <TableRow
+                                        key="Ingot"
+                                        sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                                    >
+                                        <TableCell component="th" align="center" scope="row">
+                                            24K Ingot (5g)
+                                        </TableCell>
+                                        <TableCell align="center">{prices?.data?._5ingot} EGP</TableCell>
                                     </TableRow>
                                     <TableRow
                                         key="One Pound"
