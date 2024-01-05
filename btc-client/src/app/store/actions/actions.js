@@ -38,10 +38,23 @@ export const getPrices = () => (dispatch) => {
                                             const { data } = response;
                                             const doc = parse(data)
                                             prices._5ingot = parseInt(doc.querySelector(".price").text.split(" ")[0].replace(",", ""))
-                                            return dispatch({
-                                                type: PRICES_SUCCESS,
-                                                payload: prices,
-                                            });
+                                            getRequest(undefined, undefined, undefined, endpoints.pounds._2p5ingot)
+                                                .then((response) => {
+                                                    const { data } = response;
+                                                    const doc = parse(data)
+                                                    prices._2p5ingot = parseInt(doc.querySelector(".price").text.split(" ")[0].replace(",", ""))
+                                                    return dispatch({
+                                                        type: PRICES_SUCCESS,
+                                                        payload: prices,
+                                                    });
+                                                })
+                                                .catch((err) => {
+                                                    notification.error({ message: err?.message })
+                                                    console.log(err);
+                                                    return dispatch({
+                                                        type: PRICES_FAIL,
+                                                    });
+                                                });
                                         })
                                         .catch((err) => {
                                             notification.error({ message: err?.message })
