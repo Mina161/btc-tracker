@@ -17,32 +17,32 @@ export const getPrices = () => (dispatch) => {
         .then((response) => {
             const { data } = response;
             const doc = parse(data)
-            prices.pound = parseInt(doc.querySelector(".price").text.split(" ")[0].replace(",", ""))
+            prices.pound = parseInt(doc.querySelector(".price").childNodes[0]._rawText.split("EGP")[1].replace(",", ""))
             getRequest(undefined, undefined, undefined, endpoints.pounds.half)
                 .then((response) => {
                     const { data } = response;
                     const doc = parse(data)
-                    prices.half = parseInt(doc.querySelector(".price").text.split(" ")[0].replace(",", ""))
+                    prices.half = parseInt(doc.querySelector(".price").childNodes[0]._rawText.split("EGP")[1].replace(",", ""))
                     getRequest(undefined, undefined, undefined, endpoints.pounds.quarter)
                         .then((response) => {
                             const { data } = response;
                             const doc = parse(data)
-                            prices.quarter = parseInt(doc.querySelector(".price").text.split(" ")[0].replace(",", ""))
+                            prices.quarter = parseInt(doc.querySelector(".price").childNodes[0]._rawText.split("EGP")[1].replace(",", ""))
                             getRequest(undefined, undefined, undefined, endpoints.pounds._10ingot)
                                 .then((response) => {
                                     const { data } = response;
                                     const doc = parse(data)
-                                    prices._10ingot = parseInt(doc.querySelector(".price").text.split(" ")[0].replace(",", ""))
+                                    prices._10ingot = parseInt(doc.querySelector(".price").childNodes[0]._rawText.split("EGP")[1].replace(",", ""))
                                     getRequest(undefined, undefined, undefined, endpoints.pounds._5ingot)
                                         .then((response) => {
                                             const { data } = response;
                                             const doc = parse(data)
-                                            prices._5ingot = parseInt(doc.querySelector(".price").text.split(" ")[0].replace(",", ""))
+                                            prices._5ingot = parseInt(doc.querySelector(".price").childNodes[0]._rawText.split("EGP")[1].replace(",", ""))
                                             getRequest(undefined, undefined, undefined, endpoints.pounds._2p5ingot)
                                                 .then((response) => {
                                                     const { data } = response;
                                                     const doc = parse(data)
-                                                    prices._2p5ingot = parseInt(doc.querySelector(".price").text.split(" ")[0].replace(",", ""))
+                                                    prices._2p5ingot = parseInt(doc.querySelector(".price").childNodes[0]._rawText.split("EGP")[1].replace(",", ""))
                                                     return dispatch({
                                                         type: PRICES_SUCCESS,
                                                         payload: prices,

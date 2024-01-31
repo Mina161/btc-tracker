@@ -1,10 +1,10 @@
 {
    "pounds": {
-      "quarter": "21k-fifth-king-george-gold-quarter-pound-2g.html",
-      "half": "21k-fifth-king-george-gold-half-pound-4-g.html",
-      "full": "21k-fifth-king-george-gold-pound-8-g.html",
-      "_10ingot": "24k-pharaonic-king-tut-yellow-gold-ingot-10.html",
-      "_5ingot": "24k-btc-yellow-gold-ingot-5-g.html",
-      "_2p5ingot": "24k-new-born-yellow-gold-spoon-2-5-g.html"
+      "quarter": "master-gold-quarter-gold-coin-of-king-george-v-2-gram-21-karat.html",
+      "half": "master-gold-half-gold-coin-of-king-george-v-4-gram-21-karat.html",
+      "full": "master-gold-coin-of-king-george-v-8-gram-21-karat.html",
+      "_10ingot": "master-gold-gold-bar-10-gram-999-9-pure.html",
+      "_5ingot": "el-galla-gold-bar-5-gram-999-9-pure.html",
+      "_2p5ingot": "master-gold-gold-bar-2-5-gram-999-9-pure.html"
    }
 }

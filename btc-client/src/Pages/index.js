@@ -122,7 +122,7 @@ export const Index = ({ prices, getPrices, coins, addCoin, getCoins, saveCoins, 
             <hr />
             <Box>
                 <Card sx={{ margin: 2, display: "flex-col", justifyContent: "center", alignItems: "center" }}>
-                    <Typography fontWeight="bold" fontSize={42}>BTC Prices as of {moment().format("lll")}</Typography>
+                    <Typography fontWeight="bold" fontSize={42}>Dahab Masr Prices as of {moment().format("lll")}</Typography>
                     <Box display= "flex" justifyContent="center" alignItems="center" my={2}>
                         <TableContainer sx={{width: "80%"}} component={Paper}>
                             <Table aria-label="simple table">
