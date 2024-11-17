@@ -30,6 +30,7 @@ export const Index = ({ prices, getPrices, coins, addCoin, getCoins, saveCoins, 
                 case "10Ingot": return prices?.data?._10ingot;
                 case "5Ingot": return prices?.data?._5ingot;
                 case "2.5Ingot": return prices?.data?._2p5ingot;
+                case "20Ingot": return prices?.data?._20ingot;
                 default: return 0;
             }
         })
@@ -90,6 +91,7 @@ export const Index = ({ prices, getPrices, coins, addCoin, getCoins, saveCoins, 
                                         name="coin"
                                         label="Investment Options"
                                     >
+                                        <MenuItem value={"20Ingot"}>24k Ingot (20g)</MenuItem>
                                         <MenuItem value={"10Ingot"}>24k Ingot (10g)</MenuItem>
                                         <MenuItem value={"5Ingot"}>24k Ingot (5g)</MenuItem>
                                         <MenuItem value={"2.5Ingot"}>24k Ingot (2.5g)</MenuItem>
@@ -133,7 +135,16 @@ export const Index = ({ prices, getPrices, coins, addCoin, getCoins, saveCoins, 
                                     </TableRow>
                                 </TableHead>
                                 <TableBody>
-                                <TableRow
+                                    <TableRow
+                                        key="Ingot"
+                                        sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                                    >
+                                        <TableCell component="th" align="center" scope="row">
+                                            24K Ingot (20g)
+                                        </TableCell>
+                                        <TableCell align="center">{prices?.data?._20ingot} EGP</TableCell>
+                                    </TableRow>
+                                    <TableRow
                                         key="Ingot"
                                         sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                                     >
