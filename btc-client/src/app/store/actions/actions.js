@@ -12,7 +12,6 @@ export const getPrices = () => (dispatch) => {
         half: 0,
         quarter: 0
     }
-
     getRequest(undefined, undefined, undefined, endpoints.pounds.full)
         .then((response) => {
             const { data } = response;
@@ -43,10 +42,23 @@ export const getPrices = () => (dispatch) => {
                                                     const { data } = response;
                                                     const doc = parse(data)
                                                     prices._2p5ingot = parseInt(doc.querySelector(".price").childNodes[0]._rawText.split("EGP")[1].replace(",", ""))
-                                                    return dispatch({
-                                                        type: PRICES_SUCCESS,
-                                                        payload: prices,
-                                                    });
+                                                    getRequest(undefined, undefined, undefined, endpoints.pounds._20ingot)
+                                                        .then((response) => {
+                                                            const { data } = response;
+                                                            const doc = parse(data)
+                                                            prices._20ingot = parseInt(doc.querySelector(".price").childNodes[0]._rawText.split("EGP")[1].replace(",", ""))
+                                                            return dispatch({
+                                                                type: PRICES_SUCCESS,
+                                                                payload: prices,
+                                                            });
+                                                        })
+                                                        .catch((err) => {
+                                                            notification.error({ message: err?.message })
+                                                            console.log(err);
+                                                            return dispatch({
+                                                                type: PRICES_FAIL,
+                                                            });
+                                                        });
                                                 })
                                                 .catch((err) => {
                                                     notification.error({ message: err?.message })
